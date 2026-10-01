@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sincronía Digital - Bienestar Digital</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js para gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <header class="navbar-wrapper">
+    <nav class="navbar">
+      <div class="brand">
+        <i class="fa-solid fa-microchip brand-icon"></i>
+        <span>Redes Sociales y Adolescentes</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn active" data-target="sec-home">
+          <i class="fa-solid fa-house"></i> Inicio
+        </button>
+        <button class="nav-btn" data-target="sec-survey">
+          <i class="fa-solid fa-pen-to-square"></i> Encuesta
+        </button>
+        <button class="nav-btn" data-target="sec-charts">
+          <i class="fa-solid fa-chart-pie"></i> Gráficos
+        </button>
+        <button class="nav-btn btn-admin" data-target="sec-results">
+          <i class="fa-solid fa-lock"></i> Admin (<span id="nav-count">0</span>)
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENEDOR DE SECCIONES -->
+  <main class="main-container">
+
+    <!-- SECCIÓN 1: INICIO -->
+    <section id="sec-home" class="page-section active">
+      <div class="hero-header">
+        <h1 class="hero-title">Redes Sociales y Adolescentes</h1>
+        <p class="hero-subtitle">Caja Robótica de Faraday para desintoxicación digital y control de hábitos.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="btn-go-survey">
+            <i class="fa-solid fa-paper-plane"></i> Realizar Encuesta
+          </button>
+          <button class="btn btn-outline-light btn-lg" id="btn-go-charts">
+            <i class="fa-solid fa-chart-pie"></i> Ver Resultados
+          </button>
+        </div>
+      </div>
+
+      <div class="content-card hero-overlap">
+        <!-- BANNER DEL PROYECTO (BYTE ROBÓTICA) -->
+        <div class="project-banner-wrapper">
+          <img src="byte1.jfif" alt="Aprendiendo Robótica con Byte" class="project-banner-img">
+        </div>
+
+        <!-- PLANTEAMIENTO Y SOLUCIÓN -->
+        <div class="project-info-grid mt-20">
+          <div class="info-box">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Planteamiento del Problema</h3>
+            <p>En la actualidad, la sobreexposición a estímulos digitales y el flujo ininterrumpido de notificaciones generan dependencia, falta de concentración y trastornos del sueño en los jóvenes.</p>
+          </div>
+          <div class="info-box">
+            <h3><i class="fa-solid fa-robot"></i> Nuestra Solución Robótica</h3>
+            <p>Un contenedor inteligente que combina el aislamiento físico electromagnético (Jaula de Faraday) con un sistema robótico automatizado (temporizador y servomotores) para restringir el acceso al smartphone durante periodos de enfoque.</p>
+          </div>
+        </div>
+
+        <!-- ESTADÍSTICAS RÁPIDAS -->
+        <div class="stats-banner">
+          <div class="stat-box">
+            <span class="stat-num" id="stat-count">0</span>
+            <span class="stat-label">Encuestas Registradas</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">MySQL</span>
+            <span class="stat-label">Motor de BD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: ENCUESTA SOBRE BIENESTAR DIGITAL -->
+    <section id="sec-survey" class="page-section">
+      <div class="hero-header mini">
+        <h1 class="hero-title">Encuesta sobre Bienestar Digital</h1>
+        <p class="hero-subtitle">Responde las siguientes preguntas para analizar los hábitos de uso del celular.</p>
+      </div>
+
+      <div class="content-card hero-overlap">
+        <form id="survey-form">
+          
+          <!-- DATOS PERSONALES -->
+          <h3 class="form-section-title"><i class="fa-solid fa-user"></i> Datos Generales</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Nombre Completo <span class="req">*</span></label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-id-card"></i>
+                <input type="text" id="fullName" class="form-control" placeholder="Ej: Juan Pérez" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="course">Curso / Año <span class="req">*</span></label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <input type="text" id="course" class="form-control" placeholder="Ej: 2do BGU" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dailyHours">¿Cuántas horas al día usas el teléfono? <span class="req">*</span></label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-clock"></i>
+                <select id="dailyHours" class="form-control" required>
+                  <option value="" disabled selected>Selecciona un rango</option>
+                  <option value="Menos de 2 horas">Menos de 2 horas</option>
+                  <option value="Entre 2 y 4 horas">Entre 2 y 4 horas</option>
+                  <option value="Entre 4 y 6 horas">Entre 4 y 6 horas</option>
+                  <option value="Más de 6 horas">Más de 6 horas</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- CUESTIONARIO BIENESTAR DIGITAL -->
+          <h3 class="form-section-title mt-20"><i class="fa-solid fa-mobile-screen"></i> Hábitos de Uso</h3>
+          <div class="form-grid">
+            
+            <div class="form-group">
+              <label for="p1">1. ¿Utilizas celular todos los días? <span class="req">*</span></label>
+              <select id="p1" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p2">2. ¿Revisas tu celular varias veces durante el día? <span class="req">*</span></label>
+              <select id="p2" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Siempre">Siempre</option>
+                <option value="A veces">A veces</option>
+                <option value="Nunca">Nunca</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p3">3. ¿Utilizas el celular antes de dormir? <span class="req">*</span></label>
+              <select id="p3" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Siempre">Siempre</option>
+                <option value="A veces">A veces</option>
+                <option value="Nunca">Nunca</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p4">4. ¿Te cuesta dejar de utilizar el celular? <span class="req">*</span></label>
+              <select id="p4" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="A veces">A veces</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p5">5. ¿Conoces cuánto tiempo pasas en pantalla? <span class="req">*</span></label>
+              <select id="p5" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p6">6. ¿Consideras importante tener momentos sin celular? <span class="req">*</span></label>
+              <select id="p6" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p7">7. ¿Cuidas tus emociones al usar redes sociales? <span class="req">*</span></label>
+              <select id="p7" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="Un poco">Un poco</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p8">8. ¿Te gustaría aprender estrategias para usar mejor la tecnología? <span class="req">*</span></label>
+              <select id="p8" class="form-control" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- BOTÓN ENVIAR -->
+          <div class="form-actions mt-20">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
+              <i class="fa-solid fa-paper-plane"></i> Guardar Encuesta
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: GRÁFICOS Y ESTADÍSTICAS PÚBLICAS -->
+    <section id="sec-charts" class="page-section">
+      <div class="hero-header mini">
+        <h1 class="hero-title">Resultados de Bienestar Digital</h1>
+        <p class="hero-subtitle">Gráficos estadísticos generados a partir de las encuestas.</p>
+      </div>
+
+      <div class="content-card hero-overlap">
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Horas Diarias de Uso del Celular</h3>
+            <div class="chart-container">
+              <canvas id="chart-hours"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Dificultad para Dejar el Celular</h3>
+            <div class="chart-container">
+              <canvas id="chart-difficulty"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: ADMIN / TABLA (PROTEGIDO) -->
+    <section id="sec-results" class="page-section">
+      <div class="hero-header mini">
+        <h1 class="hero-title">Panel de Administración</h1>
+        <p class="hero-subtitle">Gestión avanzada de registros y exportación de datos.</p>
+      </div>
+
+      <div class="content-card hero-overlap">
+        <!-- VISTA DE LOGIN ADMIN -->
+        <div id="admin-auth-card" class="auth-box">
+          <i class="fa-solid fa-lock auth-icon"></i>
+          <h2>Acceso Restringido</h2>
+          <p>Ingresa la clave de administrador para consultar las respuestas en detalle.</p>
+          <div class="form-group mt-20">
+            <input type="password" id="admin-pass-input" class="form-control" placeholder="Contraseña Admin (Prueba: admin123)" style="padding-left:15px; text-align:center;">
+          </div>
+          <button id="btn-admin-login" class="btn btn-primary mt-20 btn-block">
+            <i class="fa-solid fa-key"></i> Desbloquear Panel
+          </button>
+          <p id="auth-error" class="error-msg hidden">Contraseña incorrecta.</p>
+        </div>
+
+        <!-- CONTENIDO ADMIN -->
+        <div id="admin-content" class="hidden">
+          <div class="admin-header-bar">
+            <span class="badge-admin"><i class="fa-solid fa-user-check"></i> Modo Administrador Activo</span>
+            <button id="btn-admin-logout" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+            </button>
+          </div>
+
+          <div class="results-toolbar mt-20">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="search-input" placeholder="Buscar por nombre o curso...">
+            </div>
+          </div>
+
+          <div class="table-wrapper mt-20">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Curso</th>
+                  <th>Horas/Día</th>
+                  <th>Usa antes de dormir</th>
+                  <th>Dificultad para dejarlo</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="survey-table-body"></tbody>
+            </table>
+            <div id="empty-state" class="empty-state hidden">
+              <i class="fa-solid fa-folder-open"></i>
+              <p>Aún no hay encuestas guardadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
