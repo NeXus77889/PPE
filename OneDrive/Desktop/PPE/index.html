@@ -13,14 +13,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Chart.js para gráficos -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- NAVEGACIÓN PRINCIPAL -->
+  <!-- NAVEGACIÓN PRINCIPAL (Limpia de accesos a gráficos y admin público) -->
   <header class="navbar-wrapper">
     <nav class="navbar">
       <div class="brand">
@@ -33,12 +30,6 @@
         </button>
         <button class="nav-btn" data-target="sec-survey">
           <i class="fa-solid fa-pen-to-square"></i> Encuesta
-        </button>
-        <button class="nav-btn" data-target="sec-charts">
-          <i class="fa-solid fa-chart-pie"></i> Gráficos
-        </button>
-        <button class="nav-btn btn-admin" data-target="sec-results">
-          <i class="fa-solid fa-lock"></i> Admin (<span id="nav-count">0</span>)
         </button>
       </div>
     </nav>
@@ -55,9 +46,6 @@
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" id="btn-go-survey">
             <i class="fa-solid fa-paper-plane"></i> Realizar Encuesta
-          </button>
-          <button class="btn btn-outline-light btn-lg" id="btn-go-charts">
-            <i class="fa-solid fa-chart-pie"></i> Ver Resultados
           </button>
         </div>
       </div>
@@ -79,18 +67,6 @@
             <p>Un contenedor inteligente que combina el aislamiento físico electromagnético (Jaula de Faraday) con un sistema robótico automatizado (temporizador y servomotores) para restringir el acceso al smartphone durante periodos de enfoque.</p>
           </div>
         </div>
-
-        <!-- ESTADÍSTICAS RÁPIDAS -->
-        <div class="stats-banner">
-          <div class="stat-box">
-            <span class="stat-num" id="stat-count">0</span>
-            <span class="stat-label">Encuestas Registradas</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-num">MySQL</span>
-            <span class="stat-label">Motor de BD</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -102,24 +78,25 @@
       </div>
 
       <div class="content-card hero-overlap">
+        
+        <!-- NOTA ACLARATORIA (Cumpliendo Observación 3) -->
+        <div class="disclaimer-box mb-20" style="background-color: rgba(255, 255, 255, 0.05); border-left: 4px solid #4f46e5; padding: 15px; border-radius: 6px;">
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">
+            <i class="fa-solid fa-circle-info" style="color: #4f46e5; margin-right: 8px;"></i>
+            <strong>Nota informativa:</strong> La información recopilada será utilizada exclusivamente con fines educativos y estadísticos dentro del proyecto de PPE. Tus respuestas son completamente <strong>anónimas</strong> y no serán empleadas para calificaciones, medidas disciplinarias ni procesos de seguimiento individual.
+          </p>
+        </div>
+
         <form id="survey-form">
           
-          <!-- DATOS PERSONALES -->
+          <!-- DATOS GENERALES (Cumpliendo Observaciones 1 y 2: Solo Edad) -->
           <h3 class="form-section-title"><i class="fa-solid fa-user"></i> Datos Generales</h3>
           <div class="form-grid">
             <div class="form-group">
-              <label for="fullName">Nombre Completo <span class="req">*</span></label>
+              <label for="age">Edad del estudiante <span class="req">*</span></label>
               <div class="input-icon-wrapper">
-                <i class="fa-solid fa-id-card"></i>
-                <input type="text" id="fullName" class="form-control" placeholder="Ej: Juan Pérez" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="course">Curso / Año <span class="req">*</span></label>
-              <div class="input-icon-wrapper">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <input type="text" id="course" class="form-control" placeholder="Ej: 2do BGU" required>
+                <i class="fa-solid fa-cake-candles"></i>
+                <input type="number" id="age" class="form-control" placeholder="Ej: 16" min="10" max="25" required>
               </div>
             </div>
 
@@ -199,12 +176,13 @@
               </select>
             </div>
 
+            <!-- PREGUNTA 7 CORREGIDA (Cumpliendo Observación 5) -->
             <div class="form-group">
-              <label for="p7">7. ¿Cuidas tus emociones al usar redes sociales? <span class="req">*</span></label>
+              <label for="p7">7. ¿Consideras que el uso de las redes sociales influye en tu estado de ánimo? <span class="req">*</span></label>
               <select id="p7" class="form-control" required>
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Sí">Sí</option>
-                <option value="Un poco">Un poco</option>
+                <option value="A veces">A veces</option>
                 <option value="No">No</option>
               </select>
             </div>
@@ -228,93 +206,14 @@
           </div>
 
         </form>
-      </div>
-    </section>
 
-    <!-- SECCIÓN 3: GRÁFICOS Y ESTADÍSTICAS PÚBLICAS -->
-    <section id="sec-charts" class="page-section">
-      <div class="hero-header mini">
-        <h1 class="hero-title">Resultados de Bienestar Digital</h1>
-        <p class="hero-subtitle">Gráficos estadísticos generados a partir de las encuestas.</p>
-      </div>
-
-      <div class="content-card hero-overlap">
-        <div class="charts-grid">
-          <div class="chart-card">
-            <h3>Horas Diarias de Uso del Celular</h3>
-            <div class="chart-container">
-              <canvas id="chart-hours"></canvas>
-            </div>
-          </div>
-          <div class="chart-card">
-            <h3>Dificultad para Dejar el Celular</h3>
-            <div class="chart-container">
-              <canvas id="chart-difficulty"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: ADMIN / TABLA (PROTEGIDO) -->
-    <section id="sec-results" class="page-section">
-      <div class="hero-header mini">
-        <h1 class="hero-title">Panel de Administración</h1>
-        <p class="hero-subtitle">Gestión avanzada de registros y exportación de datos.</p>
-      </div>
-
-      <div class="content-card hero-overlap">
-        <!-- VISTA DE LOGIN ADMIN -->
-        <div id="admin-auth-card" class="auth-box">
-          <i class="fa-solid fa-lock auth-icon"></i>
-          <h2>Acceso Restringido</h2>
-          <p>Ingresa la clave de administrador para consultar las respuestas en detalle.</p>
-          <div class="form-group mt-20">
-            <input type="password" id="admin-pass-input" class="form-control" placeholder="Contraseña Admin (Prueba: admin123)" style="padding-left:15px; text-align:center;">
-          </div>
-          <button id="btn-admin-login" class="btn btn-primary mt-20 btn-block">
-            <i class="fa-solid fa-key"></i> Desbloquear Panel
-          </button>
-          <p id="auth-error" class="error-msg hidden">Contraseña incorrecta.</p>
+        <!-- MENSAJE DE ÉXITO LUEGO DE ENVIAR (Sin gráficos) -->
+        <div id="survey-success-msg" class="hidden text-center p-20">
+          <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: #22c55e;"></i>
+          <h2 class="mt-20">¡Gracias por completar la encuesta!</h2>
+          <p>Tus respuestas han sido registradas exitosamente de forma anónima.</p>
         </div>
 
-        <!-- CONTENIDO ADMIN -->
-        <div id="admin-content" class="hidden">
-          <div class="admin-header-bar">
-            <span class="badge-admin"><i class="fa-solid fa-user-check"></i> Modo Administrador Activo</span>
-            <button id="btn-admin-logout" class="btn btn-outline btn-sm">
-              <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
-            </button>
-          </div>
-
-          <div class="results-toolbar mt-20">
-            <div class="search-box">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" id="search-input" placeholder="Buscar por nombre o curso...">
-            </div>
-          </div>
-
-          <div class="table-wrapper mt-20">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Curso</th>
-                  <th>Horas/Día</th>
-                  <th>Usa antes de dormir</th>
-                  <th>Dificultad para dejarlo</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody id="survey-table-body"></tbody>
-            </table>
-            <div id="empty-state" class="empty-state hidden">
-              <i class="fa-solid fa-folder-open"></i>
-              <p>Aún no hay encuestas guardadas.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 

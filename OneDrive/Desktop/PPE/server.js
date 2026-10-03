@@ -6,6 +6,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Clave del Administrador fija en el servidor
+const ADMIN_PASSWORD = process.env.ADMIN_PASS || 'admin123';
+
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -25,49 +28,62 @@ db.getConnection((err, connection) => {
   }
 });
 
-// Guardar encuesta
+/* ==========================================================================
+   1. GUARDAR ENCUESTA (Público - Anónimo)
+   ========================================================================== */
 app.post('/api/encuestas', (req, res) => {
-  const { fullName, course, dailyHours, p1, p2, p3, p4, p5, p6, p7, p8 } = req.body;
+  const { age, dailyHours, p1, p2, p3, p4, p5, p6, p7, p8 } = req.body;
 
   const sql = `
     INSERT INTO respuestas_encuesta 
-    (nombre_completo, curso, horas_diarias, p1_uso_diario, p2_frecuencia_revision, p3_uso_antes_dormir, p4_dificultad_dejarlo, p5_conoce_tiempo_pantalla, p6_importancia_momentos_sin_cel, p7_cuidado_emocional, p8_interes_estrategias) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (edad, daily_hours, p1, p2, p3, p4, p5, p6, p7, p8) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(sql, [fullName, course, dailyHours, p1, p2, p3, p4, p5, p6, p7, p8], (err, result) => {
+  const values = [age, dailyHours, p1, p2, p3, p4, p5, p6, p7, p8];
+
+  db.query(sql, values, (err, result) => {
     if (err) {
-      console.error(err);
+      console.error('❌ Error en INSERT:', err.message);
       return res.status(500).json({ error: err.message });
     }
-    res.json({ success: true, message: 'Encuesta guardada con éxito' });
+    res.json({ success: true, message: 'Encuesta guardada anónimamente' });
   });
 });
 
-// Obtener encuestas
-app.get('/api/encuestas', (req, res) => {
-  const sql = `
-    SELECT 
-      id,
-      nombre_completo AS fullName,
-      curso AS course,
-      horas_diarias AS dailyHours,
-      p3_uso_antes_dormir AS p3,
-      p4_dificultad_dejarlo AS p4,
-      DATE_FORMAT(fecha_registro, '%d/%m/%Y %H:%i') AS createdAt
-    FROM respuestas_encuesta 
-    ORDER BY fecha_registro DESC
-  `;
+/* ==========================================================================
+   2. LOGIN ADMIN Y OBTENER DATOS (Protegido para admin.html)
+   ========================================================================== */
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
 
-  db.query(sql, (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(results);
-  });
+  if (password === ADMIN_PASSWORD) {
+    const sql = `
+      SELECT 
+        id,
+        edad AS age,
+        daily_hours,
+        p1, p2, p3, p4, p5, p6, p7, p8,
+        DATE_FORMAT(fecha_registro, '%d/%m/%Y %H:%i') AS createdAt
+      FROM respuestas_encuesta 
+      ORDER BY fecha_registro DESC
+    `;
+
+    db.query(sql, (err, results) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ success: true, encuestas: results });
+    });
+  } else {
+    res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+  }
 });
 
-// Eliminar registro
-app.delete('/api/encuestas/:id', (req, res) => {
+/* ==========================================================================
+   3. ELIMINAR REGISTRO (Protegido para admin.html)
+   ========================================================================== */
+app.delete('/api/admin/eliminar/:id', (req, res) => {
   const { id } = req.params;
+
   db.query('DELETE FROM respuestas_encuesta WHERE id = ?', [id], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ success: true });
