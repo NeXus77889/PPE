@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración · Sincronía Digital</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Estilos de Administración Limpios Estilo Power BI -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==========================================================================
+       1. POWER BI TOP COMMAND BAR
+       ========================================================================== -->
+  <header class="pbi-topbar">
+    <div class="pbi-brand-group">
+      <div class="pbi-logo-box">
+        <i class="fa-solid fa-chart-column"></i>
+      </div>
+      <div>
+        <h1 class="pbi-report-title">Power BI Analytics · Sincronía Digital</h1>
+        <p class="pbi-report-sub">
+          <i class="fa-solid fa-database"></i> Reporte Ejecutivo de Encuestas Juveniles PPE
+          <span id="last-sync-time" class="sync-tag">Conectando...</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="pbi-actions-group">
+      <a href="/" class="pbi-btn pbi-btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Volver a la Web
+      </a>
+      <button id="btn-refresh-data" class="pbi-btn pbi-btn-primary hidden">
+        <i class="fa-solid fa-arrows-rotate"></i> Actualizar
+      </button>
+      <button id="btn-limpiar-todo" class="pbi-btn pbi-btn-danger hidden" style="background:#b91c1c; margin-left:6px;" onclick="solicitarLimpiarTodo()">
+        <i class="fa-solid fa-trash-can"></i> Limpiar Todo
+      </button>
+      <button id="btn-logout" class="pbi-btn pbi-btn-danger hidden">
+        <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. LOGIN PRIVADO DE ADMINISTRADOR
+       ========================================================================== -->
+  <main class="admin-main">
+    <section id="admin-login-sec" class="admin-login-wrapper">
+      <div class="admin-login-card">
+        <div class="admin-lock-icon">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h2>Acceso Administrativo</h2>
+        <p>Introduce la contraseña privada para consultar las métricas del proyecto PPE.</p>
+
+        <div class="form-group-admin">
+          <label for="admin-pass">Contraseña de Administrador</label>
+          <input
+            type="password"
+            id="admin-pass"
+            class="input-admin-pass"
+            placeholder="••••••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button id="btn-login" class="btn-login-submit">
+          <i class="fa-solid fa-lock-open"></i> Iniciar Sesión en Dashboard
+        </button>
+
+        <p id="login-error" class="login-error-alert hidden">Contraseña incorrecta.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. DASHBOARD ANALÍTICO LIMPIO ESTILO POWER BI
+         ========================================================================== -->
+    <section id="admin-dashboard-sec" class="dashboard-canvas hidden">
+
+      <!-- SLICERS (BARRA DE FILTROS EN TIEMPO REAL) -->
+      <div class="pbi-card pbi-slicer-card">
+        <div class="slicer-header">
+          <span class="slicer-title"><i class="fa-solid fa-filter"></i> Filtros Interactivos (Slicers)</span>
+          <button id="btn-reset-filters" class="btn-reset-filters" title="Restablecer filtros">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Limpiar Filtros
+          </button>
+        </div>
+
+        <div class="slicer-controls-grid">
+          <div class="slicer-field">
+            <label for="filter-age">Edad</label>
+            <select id="filter-age" class="slicer-select">
+              <option value="all">Todas las edades</option>
+              <option value="10-14">10 a 14 años</option>
+              <option value="15-18">15 a 18 años</option>
+              <option value="19+">19 a 25 años</option>
+            </select>
+          </div>
+
+          <div class="slicer-field">
+            <label for="filter-hours">Uso Diario</label>
+            <select id="filter-hours" class="slicer-select">
+              <option value="all">Todos los rangos</option>
+              <option value="Menos de 2 horas">Menos de 2 horas</option>
+              <option value="Entre 2 y 4 horas">Entre 2 y 4 horas</option>
+              <option value="Entre 4 y 6 horas">Entre 4 y 6 horas</option>
+              <option value="Más de 6 horas">Más de 6 horas</option>
+            </select>
+          </div>
+
+          <div class="slicer-field">
+            <label for="filter-mood">Afecta Ánimo (P7)</label>
+            <select id="filter-mood" class="slicer-select">
+              <option value="all">Todas las opciones</option>
+              <option value="Sí">Sí</option>
+              <option value="A veces">A veces</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="slicer-field">
+            <label for="filter-bedtime">Al Dormir (P3)</label>
+            <select id="filter-bedtime" class="slicer-select">
+              <option value="all">Todas las opciones</option>
+              <option value="Siempre">Siempre</option>
+              <option value="A veces">A veces</option>
+              <option value="Nunca">Nunca</option>
+            </select>
+          </div>
+
+          <div class="slicer-field search-field">
+            <label for="filter-search">Búsqueda rápida</label>
+            <input
+              type="text"
+              id="filter-search"
+              class="slicer-input"
+              placeholder="Buscar por ID, respuesta..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI CARDS (MÉTRICAS CLAVE ARRIBA) -->
+      <div class="pbi-kpi-row">
+        <div class="pbi-card kpi-card border-blue">
+          <div class="kpi-info">
+            <span class="kpi-label">Total Muestra</span>
+            <span class="kpi-number" id="kpi-total-count">0</span>
+            <span class="kpi-sub" id="kpi-total-sub">Cargando datos...</span>
+          </div>
+          <div class="kpi-icon-box blue"><i class="fa-solid fa-users"></i></div>
+        </div>
+
+        <div class="pbi-card kpi-card border-amber">
+          <div class="kpi-info">
+            <span class="kpi-label">Uso Alto (+4h/día)</span>
+            <span class="kpi-number" id="kpi-hours-pct">0%</span>
+            <span class="kpi-sub" id="kpi-hours-sub">Pasan >4h en pantalla</span>
+          </div>
+          <div class="kpi-icon-box amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        </div>
+
+        <div class="pbi-card kpi-card border-red">
+          <div class="kpi-info">
+            <span class="kpi-label">Afectación del Sueño</span>
+            <span class="kpi-number" id="kpi-sleep-pct">0%</span>
+            <span class="kpi-sub" id="kpi-sleep-sub">Celular antes de dormir</span>
+          </div>
+          <div class="kpi-icon-box red"><i class="fa-solid fa-moon"></i></div>
+        </div>
+
+        <div class="pbi-card kpi-card border-purple">
+          <div class="kpi-info">
+            <span class="kpi-label">Dependencia Digital</span>
+            <span class="kpi-number" id="kpi-hard-pct">0%</span>
+            <span class="kpi-sub" id="kpi-hard-sub">Les cuesta desconectarse</span>
+          </div>
+          <div class="kpi-icon-box purple"><i class="fa-solid fa-hand-holding-hand"></i></div>
+        </div>
+
+        <div class="pbi-card kpi-card border-green">
+          <div class="kpi-info">
+            <span class="kpi-label">Apertura al Bienestar</span>
+            <span class="kpi-number" id="kpi-interest-pct">0%</span>
+            <span class="kpi-sub" id="kpi-interest-sub">Desean aprender hábitos</span>
+          </div>
+          <div class="kpi-icon-box green"><i class="fa-solid fa-seedling"></i></div>
+        </div>
+      </div>
+
+      <!-- CHARTS GRID (GRÁFICOS EN TARJETAS BLANCAS) -->
+      <div class="pbi-charts-grid">
+        <div class="pbi-card chart-card">
+          <div class="chart-header">
+            <h4><i class="fa-solid fa-chart-pie"></i> Distribución de Horas de Uso</h4>
+            <span class="chart-badge">Donut</span>
+          </div>
+          <div class="canvas-box">
+            <canvas id="chart-hours-pbi"></canvas>
+          </div>
+        </div>
+
+        <div class="pbi-card chart-card">
+          <div class="chart-header">
+            <h4><i class="fa-solid fa-chart-column"></i> Influencia en el Estado de Ánimo (P7)</h4>
+            <span class="chart-badge">Barras</span>
+          </div>
+          <div class="canvas-box">
+            <canvas id="chart-mood-pbi"></canvas>
+          </div>
+        </div>
+
+        <div class="pbi-card chart-card">
+          <div class="chart-header">
+            <h4><i class="fa-solid fa-bed"></i> Hábito Nocturno vs Dificultad para Dejarlo (P3 vs P4)</h4>
+            <span class="chart-badge">Comparativo</span>
+          </div>
+          <div class="canvas-box">
+            <canvas id="chart-sleep-pbi"></canvas>
+          </div>
+        </div>
+
+        <div class="pbi-card chart-card">
+          <div class="chart-header">
+            <h4><i class="fa-solid fa-circle-check"></i> Interés en Estrategias de Bienestar (P8)</h4>
+            <span class="chart-badge">Pastel</span>
+          </div>
+          <div class="canvas-box">
+            <canvas id="chart-interest-pbi"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA TABLE (TABLA LIMPIA EN TARJETA BLANCA) -->
+      <div class="pbi-card table-card">
+        <div class="chart-header">
+          <h4><i class="fa-solid fa-table"></i> Registros de la Base de Datos</h4>
+          <span id="table-count-label" class="record-count-tag">Cargando...</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="pbi-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Edad</th>
+                <th>Horas Diarias</th>
+                <th>Antes de Dormir (P3)</th>
+                <th>Cuesta Dejarlo (P4)</th>
+                <th>Afecta Ánimo (P7)</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body">
+              <tr>
+                <td colspan="8" style="text-align: center; padding: 25px; color: #64748b;">
+                  <i class="fa-solid fa-spinner fa-spin"></i> Cargando encuestas...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

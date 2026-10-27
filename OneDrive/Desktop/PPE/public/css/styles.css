@@ -1,0 +1,516 @@
+/* ==========================================================================
+   SINCRONÍA DIGITAL - ESTILOS PRINCIPALES
+   Diseño Limpio, Contrastes Blancos Elegantes y Estructura Profesional
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #0052cc;
+  --primary-dark: #073b8c;
+  --accent: #00b4d8;
+  --bg-dark: #0a1325;
+  --bg-light: #f0f4f9;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-elevation: 0 16px 36px rgba(7, 59, 140, 0.10);
+  --radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   1. NAVBAR PRINCIPAL (PÚBLICA)
+   ========================================================================== */
+.navbar-wrapper {
+  background: #06101e;
+  padding: 0.9rem 2rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* BOTÓN ASISTENTE IA DESTACADO CON CONTORNO NEÓN */
+.nav-btn-byte {
+  border: 1.5px solid #00f0ff !important;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.45), inset 0 0 6px rgba(0, 240, 255, 0.15) !important;
+  color: #ffffff !important;
+  background: rgba(0, 240, 255, 0.08) !important;
+  font-weight: 600 !important;
+  border-radius: 20px;
+}
+
+.nav-btn-byte:hover {
+  background: rgba(0, 240, 255, 0.22) !important;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.7), inset 0 0 10px rgba(0, 240, 255, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   2. PORTADA / HERO STREAMING (ESTILO NETFLIX)
+   ========================================================================== */
+.hero-streaming {
+  width: 100%;
+  height: 84vh;
+  min-height: 520px;
+  background: url('../assets/byte1.jfif') no-repeat right center / cover;
+  position: relative;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  /* Gradiente estilo Netflix: viñeta lateral oscura para texto nítido, transparente al centro/derecha para ver la imagen, y fundido al fondo */
+  background: 
+    linear-gradient(to top, rgba(10, 19, 37, 1) 0%, rgba(10, 19, 37, 0.7) 14%, transparent 45%),
+    linear-gradient(to bottom, rgba(6, 16, 30, 0.75) 0%, transparent 18%),
+    linear-gradient(to right, rgba(6, 16, 30, 0.96) 0%, rgba(6, 16, 30, 0.85) 32%, rgba(6, 16, 30, 0.3) 65%, rgba(6, 16, 30, 0.05) 85%, transparent 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-tag {
+  color: #a5b4fc;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.hero-title-main {
+  color: #ffffff;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+}
+
+.highlight-text {
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+/* BOTÓN "VER AHORA" ORIGINAL */
+.btn-ver-ahora {
+  display: inline-block;
+  padding: 12px 34px;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.btn-ver-ahora:hover {
+  background-color: #ffffff;
+  color: #0a1325;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   3. SECCIONES Y TARJETAS BLANCAS CON CONTRASTE
+   ========================================================================== */
+.main-container {
+  width: 100%;
+}
+
+.page-section {
+  display: none;
+}
+
+.page-section.active {
+  display: block;
+}
+
+/* Tarjeta Blanca Central */
+.content-card {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-elevation);
+  padding: 2.4rem;
+}
+
+/* Efecto Overlap sobre el Hero */
+.info-overlap {
+  margin-top: -3.5rem;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 4rem;
+}
+
+.project-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-box {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.info-box h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-box p {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   APARTADO DE BYTE CENTRADO EN EL PANEL PRINCIPAL
+   ========================================================================== */
+.byte-home-card {
+  margin-top: 2rem;
+  padding: 2.2rem 2rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 82, 204, 0.06);
+}
+
+.byte-home-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.byte-home-card h3 {
+  font-size: 1.45rem;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.byte-home-card p {
+  max-width: 680px;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.btn-byte-chat {
+  background: linear-gradient(135deg, var(--primary), #0077ff);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(0, 82, 204, 0.25);
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-byte-chat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 82, 204, 0.4);
+  background: linear-gradient(135deg, var(--primary-dark), #0066ee);
+}
+
+/* ==========================================================================
+   4. SECCIÓN DE ENCUESTA (FONDO CLARO Y FORMULARIO BLANCO)
+   ========================================================================== */
+.survey-container {
+  padding: 3.5rem 1.25rem;
+  background-color: var(--bg-light);
+  min-height: 90vh;
+}
+
+.disclaimer-box {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 6px;
+  color: #334155;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.info-icon {
+  color: var(--primary);
+  margin-right: 6px;
+}
+
+.form-section-title {
+  font-size: 1.15rem;
+  color: var(--primary-dark);
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.3rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.req {
+  color: #e11d48;
+}
+
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-wrapper i {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+}
+
+.form-control {
+  width: 100%;
+  padding: 11px 14px 11px 42px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+select.form-control {
+  padding-left: 14px;
+  cursor: pointer;
+}
+
+.input-icon-wrapper select.form-control {
+  padding-left: 42px;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.12);
+}
+
+/* Botones */
+.btn {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+}
+
+.mt-20 { margin-top: 20px; }
+.mb-20 { margin-bottom: 20px; }
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+
+/* ==========================================================================
+   5. PIE DE PÁGINA (PÚBLICO)
+   ========================================================================== */
+.footer-wrapper {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem 1.5rem;
+  background: #06101e;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  font-size: 0.86rem;
+  color: #94a3b8;
+}
+
+.footer-text strong {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDAD MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar-wrapper {
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-streaming {
+    height: 70vh;
+    min-height: 420px;
+  }
+
+  .hero-overlay {
+    padding: 0 6%;
+  }
+
+  .content-card {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .info-overlap {
+    margin-top: -2rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

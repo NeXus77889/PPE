@@ -1,0 +1,287 @@
+/* ==========================================================================
+   SINCRONÍA DIGITAL - ESTILOS ASISTENTE IA (BYTE & SINCRO)
+   Diseño Limpio, Consola Tech y Contraste Óptimo de Lectura
+   ========================================================================== */
+
+.chat-hero-container {
+  width: 100%;
+  min-height: 85vh;
+  background-color: #0042a5;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(0, 119, 255, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(0, 82, 204, 0.6) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.chat-overlay {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(6, 16, 30, 0.90);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 82, 204, 0.25);
+  padding: 30px;
+}
+
+/* ENCABEZADO TECH DE BYTE */
+.chat-header-tech {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.byte-avatar-circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #06101e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #00b4d8;
+  color: #00b4d8;
+  font-size: 1.7rem;
+  flex-shrink: 0;
+}
+
+.chat-subtag {
+  color: #38bdf8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.chat-title-tech {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-online {
+  font-size: 0.72rem;
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-online i {
+  font-size: 0.5rem;
+}
+
+.btn-reset-chat {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset-chat:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.chat-description {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  margin: 6px 0 16px;
+}
+
+/* CHIPS DE SUGERENCIAS RÁPIDAS */
+.chat-chips-wrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.chat-chips-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-chip {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #bae6fd;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.chat-chip:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+/* CAJA DE MENSAJES (TECH CONSOLE) */
+.chat-box-tech {
+  height: 380px;
+  overflow-y: auto;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* BURBUJAS DE MENSAJES */
+.bot-msg {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 12px 16px;
+  border-radius: 4px 14px 14px 14px;
+  max-width: 82%;
+  align-self: flex-start;
+  border-left: 3px solid #00b4d8;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-msg {
+  background: linear-gradient(135deg, #0052cc, #0077ff);
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 14px 14px 4px 14px;
+  max-width: 82%;
+  align-self: flex-end;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  box-shadow: 0 4px 14px rgba(0, 82, 204, 0.3);
+}
+
+/* INDICADOR DE ESCRITURA */
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: #00b4d8;
+  border-radius: 50%;
+  animation: typing-dot-bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes typing-dot-bounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* CONTROLES DE ENTRADA CON FONDO BLANCO Y TEXTO NEGRO */
+.chat-input-wrapper-tech {
+  display: flex;
+  gap: 12px;
+}
+
+.input-tech {
+  flex: 1;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  border: 1.5px solid #cbd5e1;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.input-tech::placeholder {
+  color: #64748b !important;
+  font-weight: 400 !important;
+}
+
+.input-tech:focus {
+  border-color: #0052cc;
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+}
+
+.btn-tech {
+  background: #ffffff;
+  color: #06101e;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-tech:hover {
+  background: #00b4d8;
+  color: #ffffff;
+}
+
+.btn-tech:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .chat-overlay {
+    padding: 20px 15px;
+  }
+
+  .chat-box-tech {
+    height: 320px;
+    padding: 14px;
+  }
+
+  .chat-title-tech {
+    font-size: 1.3rem;
+  }
+
+  .bot-msg, .user-msg {
+    max-width: 90%;
+  }
+}

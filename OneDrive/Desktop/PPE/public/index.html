@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sincronía Digital · Aprendiendo Robótica</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Hojas de Estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. CABECERA / NAVBAR (PÚBLICA - SIN ENLACE A PANEL ADMIN)
+       ========================================================================== -->
+  <header class="navbar-wrapper">
+    <nav class="navbar">
+      <div class="brand">
+        <i class="fa-solid fa-microchip brand-icon"></i>
+        <span>Sincronía Digital · Redes Sociales y Adolescentes</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn active" data-target="sec-home">
+          <i class="fa-solid fa-house"></i> Inicio
+        </button>
+        <button class="nav-btn nav-btn-byte" data-target="sec-chat">
+          <i class="fa-solid fa-robot"></i> Asistente IA (Byte)
+        </button>
+        <button class="nav-btn" data-target="sec-survey">
+          <i class="fa-solid fa-pen-to-square"></i> Encuesta
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==========================================================================
+       2. CONTENEDOR DE SECCIONES (SPA)
+       ========================================================================== -->
+  <main class="main-container">
+
+    <!-- SECCIÓN 1: INICIO Y PORTADA CANVA / STREAMING -->
+    <section id="sec-home" class="page-section active">
+
+      <!-- HERO PRINCIPAL CON IMAGEN DE FONDO -->
+      <div class="hero-streaming">
+        <div class="hero-overlay">
+          <div class="hero-content">
+            <p class="hero-tag">PROYECTO DE PARTICIPACIÓN ESTUDIANTIL</p>
+            <h1 class="hero-title-main">APRENDIENDO<br><span class="highlight-text">ROBÓTICA</span></h1>
+            <a href="#sec-survey" class="btn-ver-ahora" id="btn-go-survey">VER AHORA</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLANTEAMIENTO Y SOLUCIÓN EN TARJETAS BLANCAS CON CONTRASTE -->
+      <div class="content-card info-overlap">
+        <div class="project-info-grid">
+          <div class="info-box">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Planteamiento del Problema</h3>
+            <p>
+              En la actualidad, la sobreexposición a estímulos digitales y el flujo ininterrumpido de notificaciones generan dependencia, falta de concentración en clases y alteraciones en los hábitos de sueño de los jóvenes.
+            </p>
+          </div>
+          <div class="info-box">
+            <h3><i class="fa-solid fa-robot"></i> Nuestra Solución Robótica</h3>
+            <p>
+              Un contenedor inteligente que combina el aislamiento físico electromagnético (Jaula de Faraday) con un sistema robótico automatizado (temporizador y servomotores) para restringir el acceso al smartphone durante periodos de estudio.
+            </p>
+          </div>
+        </div>
+
+        <!-- APARTADO DE BYTE CENTRADO EN EL PANEL PRINCIPAL -->
+        <div class="byte-home-card text-center">
+          <div class="byte-home-badge">
+            <i class="fa-solid fa-robot"></i>
+            
+          </div>
+          <h3>Conoce a <strong>Byte & Sincro</strong></h3>
+          <p>
+            Nuestro compañero virtual desarrollado con Inteligencia Artificial (Google Gemini). Creado para dialogar con los adolescentes sobre sus hábitos de pantalla, validar emociones y descubrir estrategias de bienestar digital sin sermones.
+          </p>
+          <div class="byte-home-actions">
+            <button id="btn-home-chat" class="btn btn-byte-chat" data-target="sec-chat">
+              <i class="fa-solid fa-comments"></i> Conversar con Byte AI
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: ASISTENTE IA (BYTE & SINCRO) -->
+    <section id="sec-chat" class="page-section">
+      <div class="chat-hero-container">
+        <div class="chat-overlay">
+          <div class="chat-card-tech">
+
+            <!-- ENCABEZADO DE BYTE -->
+            <div class="chat-header-tech">
+              <div class="byte-avatar-circle">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div style="flex: 1;">
+                <p class="chat-subtag">ASISTENTE CONVERSACIONAL REFLEXIVO</p>
+                <h2 class="chat-title-tech">
+                  BYTE & SINCRO
+                  <span class="badge-online"><i class="fa-solid fa-circle"></i> EN LÍNEA</span>
+                </h2>
+              </div>
+              <button id="btn-clear-chat" class="btn-reset-chat" title="Reiniciar chat">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+            </div>
+
+            <p class="chat-description">
+              Conversa en tiempo real para reflexionar sobre tus hábitos de uso del smartphone y encontrar un equilibrio digital.
+            </p>
+
+            <!-- SUGERENCIAS RÁPIDAS (CHIPS) -->
+            <div class="chat-chips-wrapper">
+              <button class="chat-chip" data-prompt="¿Por qué me cuesta tanto dejar el celular antes de dormir?">
+                <i class="fa-regular fa-moon"></i> ¿Por qué cuesta dormir sin el cel?
+              </button>
+              <button class="chat-chip" data-prompt="¿Cómo funciona la Jaula de Faraday del proyecto robótico?">
+                <i class="fa-solid fa-shield-halved"></i> ¿Cómo funciona la Jaula de Faraday?
+              </button>
+              <button class="chat-chip" data-prompt="Dame 3 tips rápidos para estudiar sin distraerme con el celular">
+                <i class="fa-solid fa-bolt"></i> 3 tips para estudiar concentrado
+              </button>
+            </div>
+
+            <!-- CAJA DE MENSAJES -->
+            <div id="chat-box" class="chat-box-tech">
+              <div class="bot-msg">
+                ¡Hola! Soy <strong>Byte</strong>. ¿Cómo sientes que ha estado tu tiempo en el celular y redes sociales hoy?
+              </div>
+            </div>
+
+            <!-- CONTROLES DE ENTRADA -->
+            <form id="chat-form" class="chat-input-wrapper-tech" onsubmit="event.preventDefault();">
+              <input
+                type="text"
+                id="user-input"
+                class="input-tech"
+                placeholder="Escribe tu mensaje aquí..."
+                autocomplete="off"
+              />
+              <button type="button" id="send-btn" class="btn-tech">
+                <i class="fa-solid fa-paper-plane"></i> ENVIAR
+              </button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ENCUESTA SOBRE BIENESTAR DIGITAL -->
+    <section id="sec-survey" class="page-section">
+      <div class="survey-container">
+        <div class="content-card">
+
+          <!-- NOTA ACLARATORIA (ANÓNIMA) -->
+          <div class="disclaimer-box mb-20">
+            <p>
+              <i class="fa-solid fa-circle-info info-icon"></i>
+              <strong>Nota informativa:</strong> La información recopilada será utilizada exclusivamente con fines <strong>educativos y estadísticos</strong> dentro del proyecto de PPE. Las respuestas se almacenan en una base de datos privada y segura de forma 100% anónima.
+            </p>
+          </div>
+
+          <form id="survey-form">
+
+            <!-- DATOS GENERALES -->
+            <h3 class="form-section-title"><i class="fa-solid fa-user"></i> Datos generales</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="age">Edad del estudiante <span class="req">*</span></label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-cake-candles"></i>
+                  <input type="number" id="age" class="form-control" placeholder="Ej: 16" min="10" max="25" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dailyHours">¿Cuántas horas al día usas el teléfono? <span class="req">*</span></label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-clock"></i>
+                  <select id="dailyHours" class="form-control" required>
+                    <option value="" disabled selected>Selecciona un rango</option>
+                    <option value="Menos de 2 horas">Menos de 2 horas</option>
+                    <option value="Entre 2 y 4 horas">Entre 2 y 4 horas</option>
+                    <option value="Entre 4 y 6 horas">Entre 4 y 6 horas</option>
+                    <option value="Más de 6 horas">Más de 6 horas</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- CUESTIONARIO BIENESTAR DIGITAL -->
+            <h3 class="form-section-title mt-20"><i class="fa-solid fa-mobile-screen"></i> Hábitos de Uso</h3>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="p1">1. ¿Utilizas celular todos los días? <span class="req">*</span></label>
+                <select id="p1" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p2">2. ¿Revisas tu celular varias veces durante el día? <span class="req">*</span></label>
+                <select id="p2" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Siempre">Siempre</option>
+                  <option value="A veces">A veces</option>
+                  <option value="Nunca">Nunca</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p3">3. ¿Utilizas el celular antes de dormir? <span class="req">*</span></label>
+                <select id="p3" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Siempre">Siempre</option>
+                  <option value="A veces">A veces</option>
+                  <option value="Nunca">Nunca</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p4">4. ¿Te cuesta dejar de utilizar el celular? <span class="req">*</span></label>
+                <select id="p4" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Sí">Sí</option>
+                  <option value="A veces">A veces</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p5">5. ¿Conoces cuánto tiempo pasas en pantalla? <span class="req">*</span></label>
+                <select id="p5" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p6">6. ¿Consideras importante tener momentos sin celular? <span class="req">*</span></label>
+                <select id="p6" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p7">7. ¿Consideras que el uso de las redes sociales influye en tu estado de ánimo? <span class="req">*</span></label>
+                <select id="p7" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Sí">Sí</option>
+                  <option value="A veces">A veces</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="p8">8. ¿Te gustaría aprender estrategias para usar mejor la tecnología? <span class="req">*</span></label>
+                <select id="p8" class="form-control" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- BOTÓN ENVIAR -->
+            <div class="form-actions mt-20">
+              <button type="submit" class="btn btn-primary btn-block btn-lg">
+                <i class="fa-solid fa-paper-plane"></i> Guardar Encuesta
+              </button>
+            </div>
+
+          </form>
+
+          <!-- MENSAJE DE ÉXITO -->
+          <div id="survey-success-msg" class="hidden text-center p-20">
+            <i class="fa-solid fa-circle-check" style="font-size: 3.5rem; color: #22c55e;"></i>
+            <h2 class="mt-20" style="color: var(--primary-dark); font-weight: 800;">¡Gracias por completar la encuesta!</h2>
+            <p style="color: #475569; margin: 10px 0 20px;">Tus respuestas han sido registradas exitosamente de forma anónima.</p>
+            <button id="btn-new-survey" class="btn btn-primary" style="background: var(--primary-dark);">
+              <i class="fa-solid fa-plus"></i> Llenar otra encuesta
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       3. PIE DE PÁGINA LIMPIO (SIN ENLACES PRIVADOS DE ADMINISTRACIÓN)
+       ========================================================================== -->
+  <footer class="footer-wrapper">
+    <div class="footer-content">
+      <p class="footer-text">
+        <strong>Sincronía Digital</strong> · Proyecto de Participación Estudiantil (PPE). Aprendiendo Robótica.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts Modulares -->
+  <script src="js/app.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/survey.js"></script>
+</body>
+</html>

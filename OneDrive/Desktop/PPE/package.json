@@ -1,19 +1,29 @@
 {
-  "name": "ppe",
-  "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "name": "ppe-sincronia-digital",
+  "version": "2.0.0",
+  "description": "Plataforma web de concientización sobre bienestar digital, encuesta juvenil y asistente conversacional Byte con IA",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "test": "echo \"No test specified\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ppe",
+    "robotica",
+    "bienestar-digital",
+    "gemini-ai",
+    "power-bi-dashboard"
+  ],
+  "author": "Equipo PPE Robótica",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "mysql2": "^3.24.4"
+    "helmet": "^8.3.0",
+    "mysql2": "^3.24.4",
+    "xss-clean": "^0.1.4"
   }
 }
