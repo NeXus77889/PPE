@@ -1,8 +1,8 @@
 /**
  * @fileoverview Definición de endpoints de la API REST para Sincronía Digital.
  * @module routes/apiRoutes
- * @author Equipo PPE Robótica
- * @copyright (c) 2026 Equipo PPE Robótica. Todos los derechos reservados.
+ * @author Samuel Bazurto Proaño
+ * @copyright (c) 2026 Samuel Bazurto Proaño.
  * @license MIT
  */
 

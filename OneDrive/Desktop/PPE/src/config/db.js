@@ -1,7 +1,7 @@
 /**
  * @file db.js
- * @author Equipo PPE Robótica
- * @copyright (c) 2026 Equipo PPE Robótica. Todos los derechos reservados.
+ * @author Samuel Bazurto Proaño
+ * @copyright (c) 2026 Samuel Bazurto Proaño.
  * @license MIT
  */
 /**

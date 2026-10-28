@@ -15,8 +15,8 @@
     "gemini-ai",
     "power-bi-dashboard"
   ],
-  "author": "Equipo PPE Robótica",
-  "license": "ISC",
+  "author": "Samuel Bazurto Proaño",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "bcrypt": "^6.0.0",
